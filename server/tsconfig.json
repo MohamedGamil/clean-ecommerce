@@ -16,6 +16,14 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
-  }
+    "noFallthroughCasesInSwitch": false,
+    "paths": {
+        "@src/*": ["src/*"],
+        "@domain/*": ["src/domain/*"],
+        "@application/*": ["src/application/*"],
+        "@presentation/*": ["src/presentation/*"],
+        "@infrastructure/*": ["src/infrastructure/*"],
+    },
+  },
+  "exclude": ["node_modules", "dist"]
 }

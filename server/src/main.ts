@@ -8,9 +8,9 @@ import compression from 'compression';
 import rateLimit from 'express-rate-limit';
 import helmet from 'helmet';
 
-import { HttpExceptionFilter } from 'infrastructure/rest/http-exception.filter';
-import { LoggingInterceptor } from 'infrastructure/rest/logging.interceptor';
-import { ValidationPipe } from 'infrastructure/rest/validation.pipe';
+import { HttpExceptionFilter } from '@infrastructure/rest/http-exception.filter';
+import { LoggingInterceptor } from '@infrastructure/rest/logging.interceptor';
+import { ValidationPipe } from '@infrastructure/rest/validation.pipe';
 
 import { AppModule } from './app.module';
 
@@ -102,12 +102,3 @@ bootstrap().catch(e => {
   Logger.error(`❌  Error starting server, ${e}`, '', 'Bootstrap', false);
   throw e;
 });
-
-// import { NestFactory } from '@nestjs/core';
-// import { AppModule } from './app.module';
-
-// async function bootstrap() {
-//   const app = await NestFactory.create(AppModule);
-//   await app.listen(3000);
-// }
-// bootstrap();
