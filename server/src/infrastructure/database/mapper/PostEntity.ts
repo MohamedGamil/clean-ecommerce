@@ -1,6 +1,6 @@
 import { EntitySchema } from 'typeorm';
 
-import { Post } from 'domain/models/Post';
+import { Post } from '@domain/models/Post';
 
 import { BaseEntity } from './BaseEntity';
 import { User } from '@domain/models/User';

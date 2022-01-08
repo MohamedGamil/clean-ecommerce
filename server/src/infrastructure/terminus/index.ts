@@ -3,7 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { ApiTags } from '@nestjs/swagger';
 import {
   HealthCheckService,
-  DNSHealthIndicator,
+  HttpHealthIndicator,
   HealthCheck,
   TypeOrmHealthIndicator,
 } from '@nestjs/terminus';
@@ -13,7 +13,7 @@ import {
 export class HealthController {
   constructor(
     private health: HealthCheckService,
-    private dns: DNSHealthIndicator,
+    private http: HttpHealthIndicator,
     private db: TypeOrmHealthIndicator,
     private configService: ConfigService,
   ) {}
@@ -23,11 +23,11 @@ export class HealthController {
   healthCheck() {
     const host = this.configService.get<string>('HOST');
     const port = this.configService.get<string>('PORT');
-    const urlApi = `http://${host}:${port}`; // TODO: Mudar para DNS
+    const urlApi = `http://${host}:${port}`;
 
     return this.health.check([
       async () => this.db.pingCheck('database', { timeout: 300 }),
-      () => this.dns.pingCheck('api', urlApi),
+      () => this.http.pingCheck('api', urlApi),
     ]);
   }
 }

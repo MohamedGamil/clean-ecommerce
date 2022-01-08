@@ -40,30 +40,30 @@ export abstract class IRepository<Entity> {
     entityLike: DeepPartial<Entity>,
   ): Promise<Entity | undefined>;
 
-  abstract save<T extends DeepPartial<Entity>>(
-    entities: T[],
-    options: SaveOptions & { reload: false },
-  ): Promise<T[]>;
+//   abstract save<T extends DeepPartial<Entity>>(
+//     entities: T[],
+//     options: SaveOptions & { reload: false },
+//   ): Promise<T[]>;
 
-  abstract save<T extends DeepPartial<Entity>>(
-    entities: T[],
-    options?: SaveOptions,
-  ): Promise<(T & Entity)[]>;
+//   abstract save<T extends DeepPartial<Entity>>(
+//     entities: T[],
+//     options?: SaveOptions,
+//   ): Promise<(T & Entity)[]>;
 
-  abstract save<T extends DeepPartial<Entity>>(
-    entity: T,
-    options: SaveOptions & { reload: false },
-  ): Promise<T>;
+//   abstract save<T extends DeepPartial<Entity>>(
+//     entity: T,
+//     options: SaveOptions & { reload: false },
+//   ): Promise<T>;
 
-  abstract save<T extends DeepPartial<Entity>>(
-    entity: T,
-    options?: SaveOptions,
-  ): Promise<T & Entity>;
+//   abstract save<T extends DeepPartial<Entity>>(
+//     entity: T,
+//     options?: SaveOptions,
+//   ): Promise<T & Entity>;
 
-  abstract save<T extends DeepPartial<Entity>>(
-    entityOrEntities: T | T[],
-    options?: SaveOptions,
-  ): Promise<T | T[]>;
+//   abstract save<T extends DeepPartial<Entity>>(
+//     entityOrEntities: T | T[],
+//     options?: SaveOptions,
+//   ): Promise<T | T[]>;
 
   abstract remove(
     entities: Entity[],
@@ -77,55 +77,55 @@ export abstract class IRepository<Entity> {
     options?: RemoveOptions,
   ): Promise<Entity | Entity[]>;
 
-  abstract softRemove<T extends DeepPartial<Entity>>(
-    entities: T[],
-    options: SaveOptions & { reload: false },
-  ): Promise<T[]>;
+//   abstract softRemove<T extends DeepPartial<Entity>>(
+//     entities: T[],
+//     options: SaveOptions & { reload: false },
+//   ): Promise<T[]>;
 
-  abstract softRemove<T extends DeepPartial<Entity>>(
-    entities: T[],
-    options?: SaveOptions,
-  ): Promise<(T & Entity)[]>;
+//   abstract softRemove<T extends DeepPartial<Entity>>(
+//     entities: T[],
+//     options?: SaveOptions,
+//   ): Promise<(T & Entity)[]>;
 
-  abstract softRemove<T extends DeepPartial<Entity>>(
-    entity: T,
-    options: SaveOptions & { reload: false },
-  ): Promise<T>;
+//   abstract softRemove<T extends DeepPartial<Entity>>(
+//     entity: T,
+//     options: SaveOptions & { reload: false },
+//   ): Promise<T>;
 
-  abstract softRemove<T extends DeepPartial<Entity>>(
-    entity: T,
-    options?: SaveOptions,
-  ): Promise<T & Entity>;
+//   abstract softRemove<T extends DeepPartial<Entity>>(
+//     entity: T,
+//     options?: SaveOptions,
+//   ): Promise<T & Entity>;
 
-  abstract softRemove<T extends DeepPartial<Entity>>(
-    entityOrEntities: T | T[],
-    options?: SaveOptions,
-  ): Promise<T | T[]>;
+//   abstract softRemove<T extends DeepPartial<Entity>>(
+//     entityOrEntities: T | T[],
+//     options?: SaveOptions,
+//   ): Promise<T | T[]>;
 
-  abstract recover<T extends DeepPartial<Entity>>(
-    entities: T[],
-    options: SaveOptions & { reload: false },
-  ): Promise<T[]>;
+//   abstract recover<T extends DeepPartial<Entity>>(
+//     entities: T[],
+//     options: SaveOptions & { reload: false },
+//   ): Promise<T[]>;
 
-  abstract recover<T extends DeepPartial<Entity>>(
-    entities: T[],
-    options?: SaveOptions,
-  ): Promise<(T & Entity)[]>;
+//   abstract recover<T extends DeepPartial<Entity>>(
+//     entities: T[],
+//     options?: SaveOptions,
+//   ): Promise<(T & Entity)[]>;
 
-  abstract recover<T extends DeepPartial<Entity>>(
-    entity: T,
-    options: SaveOptions & { reload: false },
-  ): Promise<T>;
+//   abstract recover<T extends DeepPartial<Entity>>(
+//     entity: T,
+//     options: SaveOptions & { reload: false },
+//   ): Promise<T>;
 
-  abstract recover<T extends DeepPartial<Entity>>(
-    entity: T,
-    options?: SaveOptions,
-  ): Promise<T & Entity>;
+//   abstract recover<T extends DeepPartial<Entity>>(
+//     entity: T,
+//     options?: SaveOptions,
+//   ): Promise<T & Entity>;
 
-  abstract recover<T extends DeepPartial<Entity>>(
-    entityOrEntities: T | T[],
-    options?: SaveOptions,
-  ): Promise<T | T[]>;
+//   abstract recover<T extends DeepPartial<Entity>>(
+//     entityOrEntities: T | T[],
+//     options?: SaveOptions,
+//   ): Promise<T | T[]>;
 
   abstract insert(
     entity: QueryDeepPartialEntity<Entity> | QueryDeepPartialEntity<Entity>[],

@@ -15,7 +15,7 @@ export class User implements IEntity {
 
   updatedAt?: Date;
 
-  constructor(name: string, email: string, posts?: Post[], id?: number) {
+  constructor(name: string, email: string, posts?: Customer[], id?: number) {
     this.name = name;
     this.email = email;
     this.posts = posts;

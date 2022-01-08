@@ -69,36 +69,36 @@ preload(entityLike: DeepPartial<Entity>): Promise<Entity | undefined> {
     return this.manager.preload(this.entitySchema as any, entityLike);
 }
 
-save<T extends DeepPartial<Entity>>(
-    entities: T[],
-    options: SaveOptions & { reload: false },
-): Promise<T[]>;
+// save<T extends DeepPartial<Entity>>(
+//     entities: T[],
+//     options: SaveOptions & { reload: false },
+// ): Promise<T[]>;
 
-save<T extends DeepPartial<Entity>>(
-    entities: T[],
-    options?: SaveOptions,
-): Promise<(T & Entity)[]>;
+// save<T extends DeepPartial<Entity>>(
+//     entities: T[],
+//     options?: SaveOptions,
+// ): Promise<(T & Entity)[]>;
 
-save<T extends DeepPartial<Entity>>(
-    entity: T,
-    options: SaveOptions & { reload: false },
-): Promise<T>;
+// save<T extends DeepPartial<Entity>>(
+//     entity: T,
+//     options: SaveOptions & { reload: false },
+// ): Promise<T>;
 
-save<T extends DeepPartial<Entity>>(
-    entity: T,
-    options?: SaveOptions,
-): Promise<T & Entity>;
+// save<T extends DeepPartial<Entity>>(
+//     entity: T,
+//     options?: SaveOptions,
+// ): Promise<T & Entity>;
 
-save<T extends DeepPartial<Entity>>(
-    entityOrEntities: T | T[],
-    options?: SaveOptions,
-): Promise<T | T[]> {
-    return this.manager.save<T>(
-    this.entitySchema as any,
-    entityOrEntities as any,
-    options,
-    );
-}
+// save<T extends DeepPartial<Entity>>(
+//     entityOrEntities: T | T[],
+//     options?: SaveOptions,
+// ): Promise<T | T[]> {
+//     return this.manager.save<T>(
+//     this.entitySchema as any,
+//     entityOrEntities as any,
+//     options,
+//     );
+// }
 
 remove(entities: Entity[], options?: RemoveOptions): Promise<Entity[]>;
 
@@ -115,67 +115,67 @@ remove(
     );
 }
 
-softRemove<T extends DeepPartial<Entity>>(
-    entities: T[],
-    options: SaveOptions & { reload: false },
-): Promise<T[]>;
+// softRemove<T extends DeepPartial<Entity>>(
+//     entities: T[],
+//     options: SaveOptions & { reload: false },
+// ): Promise<T[]>;
 
-softRemove<T extends DeepPartial<Entity>>(
-    entities: T[],
-    options?: SaveOptions,
-): Promise<(T & Entity)[]>;
+// softRemove<T extends DeepPartial<Entity>>(
+//     entities: T[],
+//     options?: SaveOptions,
+// ): Promise<(T & Entity)[]>;
 
-softRemove<T extends DeepPartial<Entity>>(
-    entity: T,
-    options: SaveOptions & { reload: false },
-): Promise<T>;
+// softRemove<T extends DeepPartial<Entity>>(
+//     entity: T,
+//     options: SaveOptions & { reload: false },
+// ): Promise<T>;
 
-softRemove<T extends DeepPartial<Entity>>(
-    entity: T,
-    options?: SaveOptions,
-): Promise<T & Entity>;
+// softRemove<T extends DeepPartial<Entity>>(
+//     entity: T,
+//     options?: SaveOptions,
+// ): Promise<T & Entity>;
 
-softRemove<T extends DeepPartial<Entity>>(
-    entityOrEntities: T | T[],
-    options?: SaveOptions,
-): Promise<T | T[]> {
-    return this.manager.softRemove<T>(
-    this.entitySchema as any,
-    entityOrEntities as any,
-    options,
-    );
-}
+// softRemove<T extends DeepPartial<Entity>>(
+//     entityOrEntities: T | T[],
+//     options?: SaveOptions,
+// ): Promise<T | T[]> {
+//     return this.manager.softRemove<T>(
+//     this.entitySchema as any,
+//     entityOrEntities as any,
+//     options,
+//     );
+// }
 
-recover<T extends DeepPartial<Entity>>(
-    entities: T[],
-    options: SaveOptions & { reload: false },
-): Promise<T[]>;
+// recover<T extends DeepPartial<Entity>>(
+//     entities: T[],
+//     options: SaveOptions & { reload: false },
+// ): Promise<T[]>;
 
-recover<T extends DeepPartial<Entity>>(
-    entities: T[],
-    options?: SaveOptions,
-): Promise<(T & Entity)[]>;
+// recover<T extends DeepPartial<Entity>>(
+//     entities: T[],
+//     options?: SaveOptions,
+// ): Promise<(T & Entity)[]>;
 
-recover<T extends DeepPartial<Entity>>(
-    entity: T,
-    options: SaveOptions & { reload: false },
-): Promise<T>;
+// recover<T extends DeepPartial<Entity>>(
+//     entity: T,
+//     options: SaveOptions & { reload: false },
+// ): Promise<T>;
 
-recover<T extends DeepPartial<Entity>>(
-    entity: T,
-    options?: SaveOptions,
-): Promise<T & Entity>;
+// recover<T extends DeepPartial<Entity>>(
+//     entity: T,
+//     options?: SaveOptions,
+// ): Promise<T & Entity>;
 
-recover<T extends DeepPartial<Entity>>(
-    entityOrEntities: T | T[],
-    options?: SaveOptions,
-): Promise<T | T[]> {
-    return this.manager.recover<T>(
-    this.entitySchema as any,
-    entityOrEntities as any,
-    options,
-    );
-}
+// recover<T extends DeepPartial<Entity>>(
+//     entityOrEntities: T | T[],
+//     options?: SaveOptions,
+// ): Promise<T | T[]> {
+//     return this.manager.recover<T>(
+//     this.entitySchema as any,
+//     entityOrEntities as any,
+//     options,
+//     );
+// }
 
 insert(
     entity: QueryDeepPartialEntity<Entity> | QueryDeepPartialEntity<Entity>[],

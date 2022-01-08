@@ -47,8 +47,9 @@ export class PostsUseCases {
 
     user.createPost(post);
 
-    const savedUser = await this.usersRepository.save(user);
+    return null;
+    // const savedUser = await this.usersRepository.save(user);
 
-    return savedUser.posts.find(p => p.title === post.title);
+    // return savedUser.posts.find(p => p.title === post.title);
   }
 }
