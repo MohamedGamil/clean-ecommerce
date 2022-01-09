@@ -48,7 +48,7 @@ export const UserEntity = new EntitySchema<User>({
       target: () => Product,
       cascade: ['insert', 'update'],
       onDelete: 'CASCADE',
-      inverseSide: 'user',
+      inverseSide: 'author',
     },
   },
   indices: [

@@ -1,27 +1,30 @@
 import { IsString, IsNotEmpty, IsEmail } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
-import { Post } from '@domain/models/Post';
+import { Product } from '@domain/models/Product';
 
-export class CreatePostVM {
+export class CreateProductVM {
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    description: 'The title of the post',
+    description: 'The title of the product',
     example: 'Domain Driven Design',
   })
-  title: string;
+  name: string;
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    description: 'The content of the post',
+    description: 'The description of the product',
     example:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
   })
-  text: string;
+  desc: string;
 
-  static fromViewModel(vm: CreatePostVM): Post {
-    return new Post(vm.title, vm.text);
+  static fromViewModel(vm: CreateProductVM): Product {
+    return new Product({
+      name: vm.name,
+      desc: vm.desc,
+    });
   }
 }

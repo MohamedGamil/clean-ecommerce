@@ -7,13 +7,15 @@ import { HttpModule } from '@nestjs/axios';
 import { CacheService } from '@infrastructure/cache';
 import { setEnvironment } from '@infrastructure/environments';
 import { UsersModule } from '@infrastructure/ioc/users.module';
-import { PostsModule } from '@infrastructure/ioc/posts.module';
+import { ProductsModule } from '@infrastructure/ioc/products.module';
+import { OrdersModule } from '@infrastructure/ioc/orders.module';
 import { HealthController } from '@infrastructure/terminus/index';
 
 @Module({
   imports: [
     UsersModule,
-    PostsModule,
+    ProductsModule,
+    OrdersModule,
     HttpModule,
     ConfigModule.forRoot({
       isGlobal: true,

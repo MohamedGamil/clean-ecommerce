@@ -1,18 +1,18 @@
 import { Expose, plainToClass } from 'class-transformer';
 import { ApiProperty } from '@nestjs/swagger';
-import { Post } from '@domain/models/Post';
+import { Order } from '@domain/models/Order';
 
-export class PostVM {
+export class OrderVM {
   @Expose()
   @ApiProperty({
-    description: 'The id of the post',
+    description: 'The id of the order',
     example: 1,
   })
   id: number;
 
   @Expose()
   @ApiProperty({
-    description: 'The title of the post',
+    description: 'The title of the order',
     example: 'Domain Driven Design',
   })
   title: string;
@@ -26,14 +26,14 @@ export class PostVM {
   text: string;
 
   @Expose()
-  @ApiProperty({ description: 'The crational date of the post' })
+  @ApiProperty({ description: 'The crational date of the order' })
   createdAt: Date;
 
   @Expose()
-  @ApiProperty({ description: 'The date of the last post update' })
+  @ApiProperty({ description: 'The date of the last order update' })
   updatedAt: Date;
 
-  static toViewModel(user: Post): PostVM {
-    return plainToClass(PostVM, user, { excludeExtraneousValues: true });
+  static toViewModel(user: Order): OrderVM {
+    return plainToClass(OrderVM, user, { excludeExtraneousValues: true });
   }
 }

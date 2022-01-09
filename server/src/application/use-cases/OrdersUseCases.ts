@@ -12,7 +12,7 @@ export class OrdersUseCases {
     this.logger.log('Fetch all user`s orders');
 
     const user = await this.usersRepository.findOne(userId, {
-      relations: ['posts'],
+      relations: ['orders'],
     });
 
     if (!user)
@@ -23,7 +23,7 @@ export class OrdersUseCases {
 
   async getOrderByUser(userId: number, orderId: number): Promise<Order> {
     const user = await this.usersRepository.findOne(userId, {
-      relations: ['posts'],
+      relations: ['orders'],
     });
 
     if (!user)
@@ -37,20 +37,18 @@ export class OrdersUseCases {
     return post;
   }
 
-  async createOrder(userId: number, post: Order): Promise<Order> {
+  async createOrder(userId: number, order: Order): Promise<Order> {
     const user = await this.usersRepository.findOne(userId, {
-      relations: ['posts'],
+      relations: ['orders'],
     });
 
     if (!user)
       throw new NotFoundException(`The user {${userId}} wasn't found.`);
 
-    user.createOrder(post);
+    user.createOrder(order);
 
-    // const savedUser = await this.usersRepository.save(user);
+    const savedUser = await this.usersRepository.save(user);
 
-    // return savedUser.posts.find(p => p.title === post.title);
-
-    return null;
+    return savedUser.orders.find(p => p.id === order.id);
   }
 }

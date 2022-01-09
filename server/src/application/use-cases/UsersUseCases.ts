@@ -25,8 +25,8 @@ export class UsersUseCases {
 
   async createUser(user: User): Promise<User> {
     this.logger.log(`Saving a user`);
-    // return await this.usersRepository.save(user);
-    return null;
+
+    return await this.usersRepository.save(user);
   }
 
   async updateUser(user: User): Promise<boolean> {

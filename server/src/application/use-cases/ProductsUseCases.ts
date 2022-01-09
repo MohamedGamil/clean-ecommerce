@@ -47,10 +47,8 @@ export class ProductsUseCases {
 
     user.createProduct(product);
 
-    // const savedUser = await this.usersRepository.save(user);
+    const savedUser = await this.usersRepository.save(user);
 
-    // return savedUser.products.find(p => p.title === product.title);
-
-    return null;
+    return savedUser.products.find(p => p.id === product.id);
   }
 }
