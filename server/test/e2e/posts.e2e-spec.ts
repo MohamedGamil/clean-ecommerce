@@ -6,7 +6,7 @@ import { IUsersRepository } from '@application/ports/IUsersRepository';
 // import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { setEnvironment } from '@infrastructure/environments';
-import { PostsModule } from '@infrastructure/ioc/posts.module';
+import { ProductsModule } from '@infrastructure/ioc/products.module';
 import { User } from '@domain/models/User';
 // import { User } from 'domain/models/User';
 
@@ -17,7 +17,7 @@ describe('Users', () => {
   beforeAll(async () => {
     const module = await Test.createTestingModule({
       imports: [
-        PostsModule,
+        ProductsModule,
         // TypeOrmModule.forRoot(),
         ConfigModule.forRoot({
           isGlobal: true,

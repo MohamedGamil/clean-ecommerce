@@ -1,14 +1,14 @@
 import { Test } from '@nestjs/testing';
-import { PostsController } from 'presentation/controllers/PostsController';
-import { PostsUseCases } from 'application/use-cases/PostsUseCases';
-import { Post } from 'domain/models/Post';
-import { PostVM } from 'presentation/view-models/posts/PostVM';
+import { ProductsController } from '@presentation/controllers/ProductsController';
+import { ProductsUseCases } from '@application/use-cases/ProductsUseCases';
+import { Product } from '@domain/models/Product';
+import { ProductVM } from '@presentation/view-models/products/ProductVM';
 
-describe('PostsController Test', () => {
-  let postsController: PostsController;
-  let postsUseCases: PostsUseCases;
+describe('ProductsController Test', () => {
+  let productsController: ProductsController;
+  let productsUseCases: ProductsUseCases;
 
-  const POST = new Post('Title', 'Text', null, 1);
+  const POST = new Product('Title', 'Text', null, 1);
   POST.createdAt = new Date('2020-05-31 02:20:58.037572-03');
   POST.updatedAt = new Date('2020-05-31 02:20:58.037572-03');
 
@@ -18,57 +18,57 @@ describe('PostsController Test', () => {
     text: 'Text',
     createdAt: new Date('2020-05-31 02:20:58.037572-03'),
     updatedAt: new Date('2020-05-31 02:20:58.037572-03'),
-  } as PostVM;
+  } as ProductVM;
 
   beforeEach(async () => {
     const module = await Test.createTestingModule({
       providers: [
-        PostsController,
+        ProductsController,
         {
-          provide: PostsUseCases,
+          provide: ProductsUseCases,
           useFactory: () => ({
-            getAllPostsByUser: jest.fn(() => true),
-            getPostByUser: jest.fn(() => true),
-            createPost: jest.fn(() => true),
+            getAllProductsByUser: jest.fn(() => true),
+            getProductByUser: jest.fn(() => true),
+            createProduct: jest.fn(() => true),
           }),
         },
       ],
     }).compile();
 
-    postsUseCases = module.get<PostsUseCases>(PostsUseCases);
-    postsController = module.get<PostsController>(PostsController);
+    productsUseCases = module.get<ProductsUseCases>(ProductsUseCases);
+    productsController = module.get<ProductsController>(ProductsController);
   });
 
-  it('should return a list of PostVM when get a valid user with posts in GET /users/:userId/posts', async () => {
+  it('should return a list of ProductVM when get a valid user with products in GET /users/:userId/products', async () => {
     jest
-      .spyOn(postsUseCases, 'getAllPostsByUser')
+      .spyOn(productsUseCases, 'getAllProductsByUser')
       .mockImplementation(async () => [POST]);
 
-    const postsVM = await postsController.getPostsByUser('1');
+    const productsVM = await productsController.getProductsByUser('1');
 
-    expect(postsVM).toHaveLength(1);
-    expect(postsVM).toEqual([POST_VM]);
+    expect(productsVM).toHaveLength(1);
+    expect(productsVM).toEqual([POST_VM]);
   });
 
-  it('should return the PostVM when get a valid posts of a valid user in GET /users/:userId/posts/:postId', async () => {
+  it('should return the ProductVM when get a valid products of a valid user in GET /users/:userId/products/:postId', async () => {
     jest
-      .spyOn(postsUseCases, 'getPostByUser')
+      .spyOn(productsUseCases, 'getProductByUser')
       .mockImplementation(async () => POST);
 
-    const postVM = await postsController.getPost('1', '1');
+    const postVM = await productsController.getProduct('1', '1');
 
-    expect(postVM instanceof PostVM).toBeTruthy();
+    expect(postVM instanceof ProductVM).toBeTruthy();
     expect(postVM).toEqual(POST_VM);
   });
 
-  it('should return a PostVM when creating a post in POST /users/:userId/posts', async () => {
+  it('should return a ProductVM when creating a post in POST /users/:userId/products', async () => {
     jest
-      .spyOn(postsUseCases, 'createPost')
+      .spyOn(productsUseCases, 'createProduct')
       .mockImplementation(async () => POST);
 
-    const postVM = await postsController.createPost('1', POST);
+    const postVM = await productsController.createProduct('1', POST);
 
-    expect(postVM instanceof PostVM).toBeTruthy();
+    expect(postVM instanceof ProductVM).toBeTruthy();
     expect(postVM).toEqual(POST_VM);
   });
 });

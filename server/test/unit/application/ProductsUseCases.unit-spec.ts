@@ -1,24 +1,24 @@
 import { Test } from '@nestjs/testing';
-
-import { IUsersRepository } from 'application/ports/IUsersRepository';
-import { PostsUseCases } from 'application/use-cases/PostsUseCases';
-import { User } from 'domain/models/User';
 import { NotFoundException } from '@nestjs/common';
-import { Post } from 'domain/models/Post';
 
-describe('PostsUseCases Test', () => {
+import { IUsersRepository } from '@application/ports/IUsersRepository';
+import { ProductsUseCases } from '@application/use-cases/ProductsUseCases';
+import { User } from '@domain/models/User';
+import { Product } from '@domain/models/Product';
+
+describe('ProductsUseCases Test', () => {
   let usersRepository: IUsersRepository;
-  let postsUseCases: PostsUseCases;
+  let productsUseCases: ProductsUseCases;
 
-  const POST = new Post('Title', 'Text', null, 1);
-  const POST2 = new Post('Title2', 'Text2', null, 1);
-  const USER = new User('John Doe', 'john.doe@gmail.com', [POST], 1);
-  const USER2 = new User('John Doe', 'john.doe@gmail.com', [POST, POST2], 1);
+  const PRODUCT = new Product({ name: 'Text1', desc: 'Description1', id: 1 });
+  const PRODUCT2 = new Product({ name: 'Text2', desc: 'Description2', id: 2 });
+  const USER = new User('John Doe', 'john.doe@gmail.com', [], [PRODUCT], 1);
+  const USER2 = new User('John Doe', 'john.doe@gmail.com', [], [PRODUCT, PRODUCT2], 1);
 
   beforeEach(async () => {
     const module = await Test.createTestingModule({
       providers: [
-        PostsUseCases,
+        ProductsUseCases,
         {
           provide: IUsersRepository,
           useFactory: () => ({
@@ -33,101 +33,101 @@ describe('PostsUseCases Test', () => {
     }).compile();
 
     usersRepository = module.get<IUsersRepository>(IUsersRepository);
-    postsUseCases = module.get<PostsUseCases>(PostsUseCases);
+    productsUseCases = module.get<ProductsUseCases>(ProductsUseCases);
   });
 
-  it('shoud return a list of posts when the users have the posts in  getAllPostsByUser', async () => {
+  it('shoud return a list of products when the users have the products in  getAllProductsByUser', async () => {
     jest.spyOn(usersRepository, 'findOne').mockImplementation(async () => USER);
-    const posts = await postsUseCases.getAllPostsByUser(1);
+    const products = await productsUseCases.getAllProductsByUser(1);
 
-    expect(posts).toHaveLength(1);
-    expect(posts).toStrictEqual([POST]);
+    expect(products).toHaveLength(1);
+    expect(products).toStrictEqual([PRODUCT]);
   });
 
-  it('shoud return a empty list when user has no post in getAllPostsByUser', async () => {
+  it('shoud return a empty list when user has no post in getAllProductsByUser', async () => {
     const user = new User('', '', null, 1);
     jest.spyOn(usersRepository, 'findOne').mockImplementation(async () => user);
 
-    const posts = await postsUseCases.getAllPostsByUser(1);
+    const products = await productsUseCases.getAllProductsByUser(1);
 
-    expect(posts).toHaveLength(0);
-    expect(posts).toStrictEqual([]);
+    expect(products).toHaveLength(0);
+    expect(products).toStrictEqual([]);
   });
 
-  it('shoud throw NotFoundException when the user is not found in getAllPostsByUser', async () => {
+  it('shoud throw NotFoundException when the user is not found in getAllProductsByUser', async () => {
     try {
       jest
         .spyOn(usersRepository, 'findOne')
         .mockImplementation(async () => null);
-      await postsUseCases.getAllPostsByUser(2);
+      await productsUseCases.getAllProductsByUser(2);
     } catch (err) {
       expect(err instanceof NotFoundException).toBeTruthy();
       expect(err.message).toBe("The user {2} wasn't found.");
     }
   });
 
-  it('shoud get a post when a valid user has a post in getPostByUser', async () => {
+  it('shoud get a post when a valid user has a post in getProductByUser', async () => {
     jest.spyOn(usersRepository, 'findOne').mockImplementation(async () => USER);
 
-    const post = await postsUseCases.getPostByUser(1, 1);
+    const post = await productsUseCases.getProductByUser(1, 1);
 
-    expect(post instanceof Post).toBeTruthy();
-    expect(post).toStrictEqual(POST);
+    expect(post instanceof Product).toBeTruthy();
+    expect(post).toStrictEqual(PRODUCT);
   });
 
-  it('shoud throw NotFoundException when not user is found in getPostByUser', async () => {
+  it('shoud throw NotFoundException when not user is found in getProductByUser', async () => {
     try {
       jest
         .spyOn(usersRepository, 'findOne')
         .mockImplementation(async () => null);
-      await postsUseCases.getPostByUser(2, 1);
+      await productsUseCases.getProductByUser(2, 1);
     } catch (err) {
       expect(err instanceof NotFoundException).toBeTruthy();
       expect(err.message).toBe("The user {2} wasn't found.");
     }
   });
 
-  it('shoud throw NotFoundException when user there are not post in getPostByUser', async () => {
+  it('shoud throw NotFoundException when user there are not post in getProductByUser', async () => {
     try {
       const user = new User('', '', null, 1);
       jest
         .spyOn(usersRepository, 'findOne')
         .mockImplementation(async () => user);
-      await postsUseCases.getPostByUser(1, 1);
+      await productsUseCases.getProductByUser(1, 1);
     } catch (err) {
       expect(err instanceof NotFoundException).toBeTruthy();
       expect(err.message).toBe("The post {1} wasn't found.");
     }
   });
 
-  it('shoud throw NotFoundException when the post not exists in getPostByUser', async () => {
+  it('shoud throw NotFoundException when the post not exists in getProductByUser', async () => {
     try {
       jest
         .spyOn(usersRepository, 'findOne')
         .mockImplementation(async () => USER);
-      await postsUseCases.getPostByUser(1, 99);
+      await productsUseCases.getProductByUser(1, 99);
     } catch (err) {
       expect(err instanceof NotFoundException).toBeTruthy();
       expect(err.message).toBe("The post {99} wasn't found.");
     }
   });
 
-  it('should create a post when user and post is valis in createPost', async () => {
+  it('should create a post when user and post is valis in createProduct', async () => {
     jest.spyOn(usersRepository, 'findOne').mockImplementation(async () => USER);
     jest.spyOn(usersRepository, 'save').mockImplementation(async () => USER2);
 
-    const post = await postsUseCases.createPost(1, POST2);
+    const post = await productsUseCases.createProduct(1, PRODUCT2);
 
-    expect(post instanceof Post).toBeTruthy();
-    expect(post).toStrictEqual(POST2);
+    expect(post instanceof Product).toBeTruthy();
+    expect(post).toStrictEqual(PRODUCT2);
   });
 
-  it('should throw NotFoundException when the user not exists in createPost', async () => {
+  it('should throw NotFoundException when the user not exists in createProduct', async () => {
     try {
       jest
         .spyOn(usersRepository, 'findOne')
         .mockImplementation(async () => null);
-      await postsUseCases.createPost(2, POST2);
+      await productsUseCases.createProduct(2, PRODUCT2);
     } catch (err) {
       expect(err instanceof NotFoundException).toBeTruthy();
       expect(err.message).toBe("The user {2} wasn't found.");

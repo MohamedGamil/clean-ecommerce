@@ -1,18 +1,18 @@
 import { Test } from '@nestjs/testing';
-import { UsersController } from 'presentation/controllers/UsersController';
-import { UsersUseCases } from 'application/use-cases/UsersUseCases';
-import { User } from 'domain/models/User';
-import { Post } from 'domain/models/Post';
-import { UserVM } from 'presentation/view-models/users/UserVM';
+import { UsersController } from '@presentation/controllers/UsersController';
+import { UsersUseCases } from '@application/use-cases/UsersUseCases';
+import { User } from '@domain/models/User';
+import { Product } from '@domain/models/Product';
+import { UserVM } from '@presentation/view-models/users/UserVM';
 
 describe('UsersController Test', () => {
   let usersController: UsersController;
   let usersUseCases: UsersUseCases;
 
-  const POST = new Post('Title', 'Text', null, 1);
-  POST.createdAt = new Date('2020-05-31 02:20:58.037572-03');
-  POST.updatedAt = new Date('2020-05-31 02:20:58.037572-03');
-  const USER = new User('John Doe', 'john.doe@gmail.com', [POST], 1);
+  const PRODUCT = new Product({ name: 'Title', desc: 'Text', id: 1});
+  PRODUCT.createdAt = new Date('2020-05-31 02:20:58.037572-03');
+  PRODUCT.updatedAt = new Date('2020-05-31 02:20:58.037572-03');
+  const USER = new User('John Doe', 'john.doe@gmail.com', [], [PRODUCT], 1);
   USER.createdAt = new Date('2020-05-31 02:20:58.037572-03');
   USER.updatedAt = new Date('2020-05-31 02:20:58.037572-03');
 
