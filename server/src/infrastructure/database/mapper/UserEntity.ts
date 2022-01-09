@@ -1,6 +1,7 @@
 import { EntitySchema } from 'typeorm';
 import { User } from '@domain/models/User';
-import { Post } from '@domain/models/Post';
+import { Order } from '@domain/models/Order';
+import { Product } from '@src/domain/models/Product';
 import { BaseEntity } from './BaseEntity';
 
 export const UserEntity = new EntitySchema<User>({
@@ -35,9 +36,16 @@ export const UserEntity = new EntitySchema<User>({
     createdAt: 'ASC',
   },
   relations: {
-    posts: {
+    orders: {
       type: 'one-to-many',
-      target: () => Post,
+      target: () => Order,
+      cascade: ['insert', 'update'],
+      onDelete: 'CASCADE',
+      inverseSide: 'user',
+    },
+    products: {
+      type: 'one-to-many',
+      target: () => Product,
       cascade: ['insert', 'update'],
       onDelete: 'CASCADE',
       inverseSide: 'user',

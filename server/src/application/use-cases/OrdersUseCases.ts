@@ -1,15 +1,15 @@
 import { Injectable, Logger, NotFoundException } from '@nestjs/common';
-import { Post } from '@domain/models/Post';
+import { Order } from '@domain/models/Order';
 import { IUsersRepository } from '@application/ports/IUsersRepository';
 
 @Injectable()
-export class PostsUseCases {
-  private readonly logger = new Logger(PostsUseCases.name);
+export class OrdersUseCases {
+  private readonly logger = new Logger(OrdersUseCases.name);
 
   constructor(private readonly usersRepository: IUsersRepository) {}
 
-  async getAllPostsByUser(userId: number): Promise<Post[]> {
-    this.logger.log('Fetch all user`s posts');
+  async getAllOrdersByUser(userId: number): Promise<Order[]> {
+    this.logger.log('Fetch all user`s orders');
 
     const user = await this.usersRepository.findOne(userId, {
       relations: ['posts'],
@@ -18,10 +18,10 @@ export class PostsUseCases {
     if (!user)
       throw new NotFoundException(`The user {${userId}} wasn't found.`);
 
-    return user.findPosts();
+    return user.findOrders();
   }
 
-  async getPostByUser(userId: number, postId: number): Promise<Post> {
+  async getOrderByUser(userId: number, orderId: number): Promise<Order> {
     const user = await this.usersRepository.findOne(userId, {
       relations: ['posts'],
     });
@@ -29,15 +29,15 @@ export class PostsUseCases {
     if (!user)
       throw new NotFoundException(`The user {${userId}} wasn't found.`);
 
-    const post = user.findPost(postId);
+    const post = user.findOrder(orderId);
 
     if (!post)
-      throw new NotFoundException(`The post {${postId}} wasn't found.`);
+      throw new NotFoundException(`The post {${orderId}} wasn't found.`);
 
     return post;
   }
 
-  async createPost(userId: number, post: Post): Promise<Post> {
+  async createOrder(userId: number, post: Order): Promise<Order> {
     const user = await this.usersRepository.findOne(userId, {
       relations: ['posts'],
     });
@@ -45,11 +45,12 @@ export class PostsUseCases {
     if (!user)
       throw new NotFoundException(`The user {${userId}} wasn't found.`);
 
-    user.createPost(post);
+    user.createOrder(post);
 
-    return null;
     // const savedUser = await this.usersRepository.save(user);
 
     // return savedUser.posts.find(p => p.title === post.title);
+
+    return null;
   }
 }

@@ -12,4 +12,6 @@ export class UsersRepository extends BaseRepository<User>
   constructor(@InjectConnection() connection: Connection) {
     super(connection, UserEntity);
   }
+
+  // ...
 }

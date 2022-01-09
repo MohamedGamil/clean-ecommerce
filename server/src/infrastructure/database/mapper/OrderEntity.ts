@@ -12,24 +12,24 @@ export const OrderEntity = new EntitySchema<Order>({
     paymentType: {
       name: 'payment_type',
       type: String,
-      length: 25,
+      length: 50,
       nullable: true,
     },
     paymentStatus: {
       name: 'payment_status',
       type: String,
-      length: 25,
+      length: 50,
       nullable: true,
     },
     deliveryStatus: {
       name: 'delivery_status',
       type: String,
-      length: 25,
+      length: 50,
       nullable: true,
     },
     status: {
       type: String,
-      length: 25,
+      length: 50,
       nullable: true,
     },
     totalDiscount: {
