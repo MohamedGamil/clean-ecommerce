@@ -8,8 +8,8 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-      "install": "cd server && yarn && cd ../client && yarn",
-      "serve": "cd server && yarn start:dev",
-      "start": "cd server && yarn start"
+      "install": "cd server && npm install && cd ../client && npm install",
+      "serve": "cd server && npm run start:dev",
+      "start": "cd server && npm run start"
   }
 }
