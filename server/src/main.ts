@@ -2,6 +2,7 @@ import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { getConnection } from 'typeorm';
 import bodyParser from 'body-parser';
 import chalk from 'chalk';
 import compression from 'compression';
@@ -21,6 +22,7 @@ async function bootstrap() {
     const app = await NestFactory.create(AppModule, {
       cors: true,
     });
+
     const configService = app.get(ConfigService);
     Logger.log(
       `Environment: ${chalk
@@ -39,6 +41,7 @@ async function bootstrap() {
         parameterLimit: 50000,
       }),
     );
+
     app.use(
       rateLimit({
         windowMs: 1000 * 60 * 60,
@@ -73,6 +76,7 @@ async function bootstrap() {
     const PORT = configService.get('PORT', '3000');
 
     await app.listen(PORT);
+
     process.env.NODE_ENV !== 'production'
       ? Logger.log(
           `🚀  Server ready at http://${HOST}:${chalk
@@ -88,6 +92,12 @@ async function bootstrap() {
           'Bootstrap',
           false,
         );
+
+    if (String(process.env.NODE_ENV).toUpperCase() === 'DEVELOPMENT') {
+        await getConnection().synchronize(true);
+
+        Logger.log( `🦲  Database has been synchronized` );
+    }
 
     if (module.hot) {
       module.hot.accept();

@@ -7,6 +7,8 @@
   "license": "MIT",
   "scripts": {
     "make:migration": "npx typeorm migration:create -n",
+    "migrate": "npx typeorm migration:run",
+    "migrate:revert": "npx typeorm migration:revert",
     "prebuild": "rimraf dist",
     "prestart": "rimraf dist",
     "build": "nest build",

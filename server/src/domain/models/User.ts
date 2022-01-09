@@ -9,6 +9,10 @@ export class User implements IEntity {
 
   email: string;
 
+  password: string;
+
+  isAdmin: boolean = false;
+
   posts?: Post[];
 
   createdAt?: Date;

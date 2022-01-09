@@ -1,10 +1,7 @@
 import { EntitySchema } from 'typeorm';
-
 import { Post } from '@domain/models/Post';
-
-import { BaseEntity } from './BaseEntity';
 import { User } from '@domain/models/User';
-import { UserEntity } from './UserEntity';
+import { BaseEntity } from './BaseEntity';
 
 export const PostEntity = new EntitySchema<Post>({
   name: 'Post',
@@ -15,9 +12,11 @@ export const PostEntity = new EntitySchema<Post>({
     title: {
       type: String,
       length: 50,
+      nullable: true,
     },
     text: {
       type: String,
+      nullable: true,
     },
   },
   orderBy: {

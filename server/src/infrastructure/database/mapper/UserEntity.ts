@@ -12,10 +12,23 @@ export const UserEntity = new EntitySchema<User>({
     name: {
       type: String,
       length: 100,
+      nullable: true,
     },
     email: {
       type: String,
       length: 100,
+      nullable: true,
+    },
+    password: {
+      type: String,
+      length: 191,
+      nullable: true,
+    },
+    isAdmin: {
+      name: 'is_admin',
+      type: 'boolean',
+      default: false,
+      nullable: true,
     },
   },
   orderBy: {
