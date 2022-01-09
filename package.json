@@ -9,6 +9,7 @@
   "private": false,
   "scripts": {
       "install": "cd server && yarn && cd ../client && yarn",
-      "serve": "cd server && yarn start:dev"
+      "serve": "cd server && yarn start:dev",
+      "start": "cd server && yarn start"
   }
 }
