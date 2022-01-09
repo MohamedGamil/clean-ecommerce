@@ -17,13 +17,7 @@ $ yarn install
 $ yarn serve
 ```
 
-3. To monitor the status of both client and server processes, run the following command:
-```bash
-$ yarn monitor
-```
-
-
-> These commands work only if you have an enviroment that has `NodeJS`, `PM2`, and `yarn` installed.
+> These commands work only if you have an enviroment that has `NodeJS`, and `yarn` installed.
 
 - - -
 

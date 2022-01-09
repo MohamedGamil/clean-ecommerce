@@ -1,0 +1,14 @@
+{
+  "name": "clean-ecommerce",
+  "version": "1.0.0",
+  "description": "Clean Ecommerce",
+  "main": "index.js",
+  "repository": "https://github.com/MohamedGamil/clean-ecommerce.git",
+  "author": "Mohamed Gamil <gemy.dev@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+      "install": "cd server && yarn && cd ../client && yarn",
+      "serve": "cd server && yarn start:dev"
+  }
+}
