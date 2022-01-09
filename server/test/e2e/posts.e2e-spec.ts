@@ -2,12 +2,12 @@ import { INestApplication, HttpStatus } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import request from 'supertest';
 
-import { IUsersRepository } from 'application/ports/IUsersRepository';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { IUsersRepository } from '@application/ports/IUsersRepository';
+// import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
-import { setEnvironment } from 'infrastructure/environments';
-import { PostsModule } from 'infrastructure/ioc/posts.module';
-import { User } from 'domain/models/User';
+import { setEnvironment } from '@infrastructure/environments';
+import { PostsModule } from '@infrastructure/ioc/posts.module';
+import { User } from '@domain/models/User';
 // import { User } from 'domain/models/User';
 
 describe('Users', () => {
@@ -18,7 +18,7 @@ describe('Users', () => {
     const module = await Test.createTestingModule({
       imports: [
         PostsModule,
-        TypeOrmModule.forRoot(),
+        // TypeOrmModule.forRoot(),
         ConfigModule.forRoot({
           isGlobal: true,
           expandVariables: true,

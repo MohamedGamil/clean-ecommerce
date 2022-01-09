@@ -2,11 +2,11 @@ import { INestApplication, HttpStatus } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import request from 'supertest';
 
-import { IUsersRepository } from 'application/ports/IUsersRepository';
-import { UsersModule } from 'infrastructure/ioc/users.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { IUsersRepository } from '@application/ports/IUsersRepository';
+import { UsersModule } from '@infrastructure/ioc/users.module';
+// import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
-import { setEnvironment } from 'infrastructure/environments';
+import { setEnvironment } from '@infrastructure/environments';
 
 describe('Users', () => {
   let app: INestApplication;
@@ -16,7 +16,7 @@ describe('Users', () => {
     const module = await Test.createTestingModule({
       imports: [
         UsersModule,
-        TypeOrmModule.forRoot(),
+        // TypeOrmModule.forRoot(),
         ConfigModule.forRoot({
           isGlobal: true,
           expandVariables: true,
