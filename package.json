@@ -10,6 +10,6 @@
   "scripts": {
       "install": "cd server && npm install && cd ../client && npm install",
       "serve": "cd server && npm run start:dev",
-      "start": "cd server && npm run start"
+      "start": "cd server && npm run start:prod"
   }
 }
