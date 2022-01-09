@@ -6,6 +6,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
+    "make:migration": "npx typeorm migration:create -n",
     "prebuild": "rimraf dist",
     "prestart": "rimraf dist",
     "build": "nest build",

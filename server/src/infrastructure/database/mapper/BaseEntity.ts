@@ -8,12 +8,12 @@ export const BaseEntity = {
   } as EntitySchemaColumnOptions,
   createdAt: {
     name: 'created_at',
-    type: 'timestamp with time zone',
+    type: 'timestamp',
     createDate: true,
   } as EntitySchemaColumnOptions,
   updatedAt: {
     name: 'updated_at',
-    type: 'timestamp with time zone',
+    type: 'timestamp',
     updateDate: true,
   } as EntitySchemaColumnOptions,
 };

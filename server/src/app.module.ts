@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { TerminusModule } from '@nestjs/terminus';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { HttpModule } from '@nestjs/axios';
 import { CacheService } from '@infrastructure/cache';
 import { setEnvironment } from '@infrastructure/environments';
 import { UsersModule } from '@infrastructure/ioc/users.module';
@@ -13,6 +14,7 @@ import { HealthController } from '@infrastructure/terminus/index';
   imports: [
     UsersModule,
     PostsModule,
+    HttpModule,
     ConfigModule.forRoot({
       isGlobal: true,
       expandVariables: true,
